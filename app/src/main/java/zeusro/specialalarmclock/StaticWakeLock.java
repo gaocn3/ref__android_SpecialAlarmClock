@@ -5,6 +5,7 @@ import android.os.PowerManager;
 
 /**
  * Created by Z on 2015/11/16.
+ * 静态唤醒锁
  */
 public class StaticWakeLock {
     private static PowerManager.WakeLock wl = null;

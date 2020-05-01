@@ -1,0 +1,730 @@
+---------------------------------------------------------------------------------------------------- 
+### (CLOSE 2020年04月27日) 学习验证子项目 Prj_SpecialAlarmClock     2020年04月15日 
+  CLASS: XXX 
+  
+  从 github 下载的示例源码。 
+  可设置多条闹钟、 可选择响铃， 不过有些不准时。 
+
+.................................................................................................... 
+##### 三级标题 
+  CLASS: XXX 
+
+.................................................................................................... 
+
+
+
+
+
+.................................................................................................... 
+##### 学习验证子项目 Prj_SpecialAlarmClock 来源与资料 
+  CLASS: XXX 
+
+
+(已移植 AS3.3) 
+github 原路径： zeusro/SpecialAlarmClock     https://github.com/zeusro/SpecialAlarmClock 
+  自制的Android闹钟 
+  Latest commit  07eff01  on 8 Feb 2016 
+  # 源码包完备， 不用额外下载 
+  
+  gaocn3 Fork name: gaocn3/ref__android_SpecialAlarmClock     https://github.com/gaocn3/ref__android_SpecialAlarmClock 
+  <zip & clone>本地磁盘 git clone 路径： 
+  验证与阅读 Copy 路径： 
+
+
+
+
+
+
+
+
+
+
+资料： 
+API reference     https://developer.android.google.cn/reference 
+构建首个应用    https://developer.android.google.cn/training/basics/firstapp 
+
+Android官方文档中文版     https://blog.csdn.net/whitenebula/article/details/81171095 
+
+API参考文档     https://www.apiref.com/ 
+  https://blog.csdn.net/ixiaoyang/article/details/103488749 
+     Android 开发手册 中文版     https://www.apiref.com/android-zh/index.html 
+     Android 中文版：http://www.apiref.com/android-zh/index.html
+     Bootstrap3 教程：http://www.apiref.com/bootstrap3-zh/index.html
+     Bootstrap4 教程：http://www.apiref.com/bootstrap4-zh/index.html
+     CSS 手册：http://www.apiref.com/css-zh/index.htm
+     C语言：http://www.apiref.com/c-zh/index.html
+     Hibernate 5：http://www.apiref.com/hibernate5/overview-summary.html
+     Java 11 中文版：http://www.apiref.com/java11-zh/index.html
+     Java 13：http://www.apiref.com/java13/index.html
+     jQuery 手册：http://www.apiref.com/jquery-zh/index.html
+     MyBatis：http://www.apiref.com/mybatis/index.html
+     PHP：http://www.apiref.com/php/index.html
+     PHP 中文版：http://www.apiref.com/php-zh/index.html
+     Python 中文版：http://www.apiref.com/python-zh/index.html
+     Spring 5：http://www.apiref.com/spring5/index.html
+
+
+代码阅读理解 
+
+
+R.drawable     https://developer.android.google.cn/reference/android/R.drawable.html 
+  Android 自带图标库 
+
+
+# Android 自带控件 风格 
+# 不知为啥 Chrome 打开这个网页会卡， 似乎页面太大， 没有做页翻新 
+R.styleable     https://developer.android.google.cn/reference/android/R.styleable 
+  > public static final class R.styleable
+
+# COPY 网页也卡 
+android-R.styleable     https://blog.csdn.net/ZHOU452840622/article/details/51727345 
+
+
+android 自定义控件 使用declare-styleable进行配置属性（源码角度）     https://blog.csdn.net/vipzjyno1/article/details/23696537 
+  https://blog.csdn.net/hanyingjie327/article/details/31778737 
+
+LayoutInflater    https://developer.android.google.cn/reference/android/view/LayoutInflater 
+
+TimePicker     https://developer.android.google.cn/reference/android/widget/TimePicker 
+
+Android setTag和getTag()的使用     https://blog.csdn.net/yelangjueqi/article/details/9666037 
+  > Tag从本质上来讲是就是相关联的view的额外的信息。它们经常用来存储一些view的数据，这样做非常方便而不用存入另外的单独结构。 
+
+Android中Toast的用法简介     https://www.cnblogs.com/gnagwang/archive/2010/11/26/1888762.html 
+
+Android 中文 API （19） —— TwoLineListItem     https://www.cnblogs.com/over140/archive/2010/10/26/1861112.html 
+Android TwoLineListItem控件     https://blog.csdn.net/guozh/article/details/8256394 
+  > Android TwoLineListItem继承android.widget.RelativeLayout.由两个子视图组合而成，通常用在ListView中。 
+
+
+Android inflate 方法理解     https://www.jishudog.com/14354/html 
+方法原型：
+
+两个参数：inflate(int resource, ViewGroup root)
+三个参数：inflate(int resource, ViewGroup root, boolean attachToRoot)
+方法1内部调用方法2
+
+a. 如果root为null，attachToRoot将失去作用，设置任何值都没有意义，加载的布局文件最外层的所有layout属性会失效，由父布局来重新指定.
+
+b. 如果root不为null，attachToRoot不论是true或false，加载的布局文件最外层的所有layout属性都有效，唯一的不同是：
+attachToRoot为true时，会自动调用root.addView(view, params)，最后返回root；
+attachToRoot为false时，会返回view，需手动调用root.addView(view, params).
+
+c. 在不设置attachToRoot参数的情况下，如果root不为null，attachToRoot参数默认为true.
+
+
+三个案例带你看懂LayoutInflater中inflate方法两个参数和三个参数的区别     https://blog.csdn.net/u012702547/article/details/52628453 
+Android inflate方法总结     https://www.jianshu.com/p/83438249ae91 
+
+Android 解决 adapter.notifyDataSetChanged() 不起作用     https://blog.csdn.net/like_program/article/details/52517119 
+  设置 ListView 关联的适配器 Adapter。  注意之后 Adapter 中数组 ArrayList 可增添修改， 不能另外 new 分配， 否则不能驱动显示更新 
+
+Android中visibility属性VISIBLE、INVISIBLE、GONE的区别     https://blog.csdn.net/chindroid/article/details/8000713 
+
+
+
+
+
+JAVA引用拷贝、对象浅拷贝、对象深拷贝 - 勤劳的小手的文章 - 知乎     https://zhuanlan.zhihu.com/p/30320149 
+Java 到底是值传递还是引用传递？ - 知乎     https://www.zhihu.com/question/31203609 
+java将一个List赋值给另一个List相关问题     https://blog.csdn.net/w305172521/article/details/52503072 
+java List复制：浅拷贝与深拷贝     https://blog.csdn.net/DeMonliuhui/article/details/54572908 
+  List的复制 （浅拷贝与深拷贝）     https://www.cnblogs.com/luxd/p/11933686.html 
+  > 函数传值的时候是”引用传递”，在任何用”＝”向对象变量赋值的时候都是”引用传递”。 
+
+Java中集合的值传递问题     https://www.iteye.com/problems/87042 
+  > List<String> a = new ArrayList<String>(); 
+  > List<String> b = new ArrayList<String>(); 
+  > b = a;是引用传递， 原来的b对象要等待 JVM gc 垃圾回收来处理它 
+
+JAVA提高六：泛型     https://www.cnblogs.com/pony1223/p/7695781.html 
+ArrayList详解，看这篇就够了     https://blog.51cto.com/sihai/2073367 
+
+
+经常使用runOnUiThread()，你真的理解它吗     https://blog.csdn.net/wangjintao1988/article/details/77867114 
+android Activity runOnUiThread() 方法使用     https://blog.csdn.net/zhaoyanjun6/article/details/72284795 
+  > 利用Activity.runOnUiThread(Runnable)把更新ui的代码创建在Runnable中 
+理解 Activity.runOnUiThread     https://www.jianshu.com/p/e39449026f21 
+
+.................................................................................................... 
+
+
+
+
+
+
+
+
+
+
+.................................................................................................... 
+##### 学习验证子项目 Prj_SpecialAlarmClock 的日志     2020年04月15日 
+
+2020年04月15日 
+比较两个文件夹 
+
+
+
+
+
+2020年04月27日 
+  源码的几个主要部分初步阅读完成。 
+  咱太废材了， 如果想深入， 补课太多了。 这个... 
+
+
+
+
+
+主程序 
+{project.dir}\app\src\main\java\zeusro\specialalarmclock\     # 主程序源码中， package="zeusro.specialalarmclock" 包的第一级路径 
+
+清单文件 
+{project.dir}\app\src\main\AndroidManifest.xml     # 主程序的清单文件 
+<manifest package="zeusro.specialalarmclock"     # 包 "zeusro.specialalarmclock" 
+  ...>
+
+  <!-- 开机启动 -->
+  <uses-permission android:name="android.permission.WAKE_LOCK"/>
+  <uses-permission android:name="android.permission.VIBRATE"/>
+  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+  <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+  <uses-permission android:name="android.permission.INTERNET"/>
+  
+  <application
+    android:allowBackup="true"
+    android:icon="@mipmap/app_icon"     # APP 图标 {project.dir}\app\src\main\res\mipmap-xxx\app_icon.png 
+    android:label="@string/app_name"
+    android:supportsRtl="true"
+    android:theme="@style/AppTheme">
+    
+    <activity
+      android:name=".activity.AlarmActivity"     # 启动页面， 对应包中源文件 {package}\activity\AlarmActivity.java 
+      ...>
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN"/>     # 定义主页面 
+        <category android:name="android.intent.category.LAUNCHER"/>     # 定义启动器 
+      </intent-filter>
+    </activity>
+    
+    <activity android:name=".activity.AlarmAlertActivity"></activity>
+    <activity android:name=".activity.AlarmPreferencesActivity"></activity>
+    
+    <receiver
+      android:name=".receiver.AlarmServiceBroadcastReciever"     # 接收器 Receiver， 包中 {package}\receiver\AlarmServiceBroadcastReciever.java 
+      android:enabled="true"
+      android:exported="true">
+      <intent-filter>
+        <action android:name="zeusro.action.alert"/>     # 响应动作 action: "zeusro.action.alert" 
+        
+        <action android:name="android.intent.action.MAIN"/>
+        <category android:name="android.intent.category.LAUNCHER"/>
+      </intent-filter>
+    </receiver>
+    
+    <receiver
+      android:name=".receiver.BootReceiver"     # 接收器 Receiver， 包中 {package}\receiver\BootReceiver.java 
+      android:enabled="true"
+      android:exported="true">
+      <intent-filter>
+        <action android:name="android.intent.action.BOOT_COMPLETED"/>     # 响应动作 action: "android.intent.action.BOOT_COMPLETED" 
+      </intent-filter>
+    </receiver>
+    
+    <receiver
+      android:name=".receiver.NotificationWakeUpReceiver"     # 接收器 Receiver， 包中 {package}\receiver\NotificationWakeUpReceiver.java 
+      android:enabled="true"
+      android:exported="true">
+    </receiver>
+  
+    <service
+      android:name=".service.SchedulingService"     # 服务 Service， 包中 {package}\service\SchedulingService.java 
+      android:enabled="true"
+      android:exported="true">
+    </service>
+  </application>
+</manifest>
+
+
+
+
+
+布局文件     # 有单独一个页面的布局， 也有子控件、 子区域的布局。 
+
+启动页面布局： {project.dir}app\src\main\res\layout\activity_home.xml 
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout ... 
+                tools:context="zeusro.specialalarmclock.activity.AlarmActivity">     # 关联页面源码 "zeusro.specialalarmclock" 包中   {package}\activity\AlarmActivity.java 
+                                                                                     # {project.dir}\app\src\main\java\zeusro\specialalarmclock\activity\AlarmActivity.java 
+
+    <LinearLayout     # 线性分布布局 
+        ... android:orientation="vertical">     # 垂直线性布局 
+
+        <TextView     # 文本框 
+            android:id="@+id/textView"     # 文本框 id: textView 
+            android:text="@string/Introduction"     # 文本框初始文本: @string/Introduction 
+            android:textAppearance="?android:attr/textAppearanceSmall"/>     #?     其分为“文字外观” （Text Appearance）、 “文字位置”（Text Placement ）、“文字 对 齐 ” （ Text Alignment）3个区 
+
+        <ListView     # 列表框 
+            android:id="@+id/listView"     # 列表框 id: listView 
+            android:longClickable="true"     # 允许长按 
+            .../>
+    </LinearLayout>
+
+    <RelativeLayout     # 相对布局 
+        android:id="@+id/bottom_menu"     # 底栏 id: bottom_menu 
+        android:clickable="false"     # 点击无效 
+        android:orientation="horizontal"     # 水平 
+        android:weightSum="1"
+        >
+
+        <ImageButton
+            android:id="@+id/Add"     # 图形按钮 id: Add 
+            android:src="@android:drawable/ic_input_add"/>     # Android 自带图标库 
+
+        <ImageButton
+            android:id="@+id/Setting"     # 图形按钮 id: Setting 
+            android:src="@android:drawable/ic_menu_manage"     # Android 自带图标库 
+            />
+    </RelativeLayout>
+
+</RelativeLayout>
+
+
+
+
+
+闹铃提示页面布局： {project.dir}app\src\main\res\layout\alert.xml 
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:slider="http://schemas.android.com/apk/res-auto"     # 自定义控件 
+              xmlns:tools="http://schemas.android.com/tools"
+              ... 
+              tools:context=".activity.AlarmAlertActivity">     # 关联页面源码 "zeusro.specialalarmclock" 包中   {package}\activity\AlarmAlertActivity.java 
+    <!--xmlns:slider="http://schemas.android.com/tools 是关键,让下面的自定义控件能够使用自定义属性    "-->
+    
+    <TextView     # 文本框 
+        android:id="@+id/textView2"     # 文本框 id: textView2 
+        android:inputType="textMultiLine"
+        android:singleLine="true"
+        android:text="@string/AlertText"     # 文本框初始文本: @string/AlertText 
+        android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+    <RelativeLayout ...
+        >
+        
+        <!--todo 滑块的长度要通过代码动态设置 slidableLength-->
+        <zeusro.specialalarmclock.view.SlideView     # 自定义控件滑块 
+            android:id="@+id/slider"     # 滑块 id: slider 
+            ...     # 自定义属性值 
+            android:background="@mipmap/slideviewbg"     # 滑条背景图片 {project.dir}\app\src\main\res\mipmap-xxx\slideviewbg.png 
+            slider:maskText="@string/slider_text"     # 控件中提示文字： 
+            slider:slider="@mipmap/arrow"     # 小滑块图片 {project.dir}\app\src\main\res\mipmap-xxx\arrow.png 
+            .../>
+    </RelativeLayout>
+</LinearLayout>
+
+
+
+
+
+一行闹铃项的信息显示布局： {project.dir}app\src\main\res\layout\list_element.xml 
+  最左边复选框， 闹铃项是否激活 
+  右边分两行， 上面闹钟时间字符串， 下面闹钟重复周期字符串 
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout ...>     # 默认水平布局？ 
+    <CheckBox     # 复选框     一行最左侧 
+        android:id="@+id/checkBox_alarm_active"
+        android:focusable="false"
+        .../>
+
+    <View     # 一个间隙 
+        android:id="@+id/view1"
+        android:layout_width="1dp"
+        .../>
+
+    <LinearLayout     # 垂直安排两个文本框 
+        android:orientation="vertical"
+        ...>
+
+        <TextView
+            android:id="@+id/textView_alarm_time"     # 闹钟时间字符串 
+            .../>
+
+        <TextView
+            android:id="@+id/textView_alarm_days"     # 闹钟重复周期字符串 
+            .../>
+    </LinearLayout>
+</LinearLayout>
+
+
+
+
+
+XX信息显示页面布局： {project.dir}app\src\main\res\layout\middle_title_actionbar.xml 
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout ...
+              android:orientation="vertical" >
+
+    <TextView ...
+        android:text="极简闹钟"
+        android:id="@+id/actionBarTitle"
+        ... />
+</LinearLayout>
+
+
+
+
+
+闹钟参数设置页面布局： {project.dir}app\src\main\res\layout\preferences.xml     # <del>闹钟参数选择页面布局 
+  用作背景主布局， 根据需要添加子参数设置组件的布局 
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout ...>
+
+    <ListView
+        android:id="@android:id/list"     # 列表框 id: list 
+        ...
+      />
+</LinearLayout>
+
+
+
+
+
+闹钟参数设置页面 列表单项的布局： {project.dir}app\src\main\res\layout\simple_edit_text.xml 
+  // list_element.xml 中只是简单显示， 这里允许编辑 
+  一行两个文本， 其中一个是编辑框 
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout ... 
+              style="com.android.internal.R.styleable.TwoLineListItem">     # Android 控件类型， 
+              # 这个布局是用在ListView中的，有两个子View。每一项有两个ID值为text1和text2的TextView的元素。 
+
+    <TextView
+        android:id="@+id/textView3"
+        android:text="标签"
+        android:textAppearance="?attr/textAppearanceListItem"
+        ..."/>
+    <EditText
+        android:id="@+id/tagText"     # 编辑框 id: tagText
+        android:textAppearance="?attr/textAppearanceListItem"
+        .../>
+</LinearLayout>
+
+
+
+
+
+闹钟参数设置页面 时分选择页面的布局： {project.dir}app\src\main\res\layout\time_picker.xml 
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout ...>
+
+    <TextView     # 文本框
+        android:id="@+id/textView3"
+        android:text="时间"
+        android:textAppearance="?attr/textAppearanceListItem"
+        .../>
+
+    <TimePicker ...
+        android:id="@+id/timePicker"/>     # 时间选取器 id: timePicker
+</LinearLayout>
+
+
+
+
+
+闹钟参数设置页面 星期选择按钮的布局： {project.dir}app\src\main\res\layout\week_button.xml 
+  水平排列七个按钮， 代表闹钟重复的周日子 
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout ...>
+
+    <TextView     # 文本框 标题 
+        android:id="@+id/textView3"
+        android:text="重复"
+        android:textAppearance="?attr/textAppearanceListItem"
+        .../>
+
+    <LinearLayout     # 线性分布布局
+        android:id="@+id/WeekButton"     # 星期按钮组 id: WeekButton 
+        ...
+        android:orientation="horizontal">     # 水平 
+
+        <Button
+            android:id="@+id/btn_Sunday"     # 星期日按钮 id: btn_Sunday
+            android:focusable="false"     # 非选中 
+            android:text="日"
+            android:clickable="true"     # 可点击
+            android:background="#f9f6f6"
+            .../>
+
+        <Button
+            android:id="@+id/btn_Monday"
+            android:focusable="false"
+            android:text="一"
+            android:background="#f9f6f6"
+            .../>
+
+        <Button
+            android:id="@+id/btn_Tuesday"
+            android:focusable="false"
+            android:text="二"
+            android:background="#f9f6f6".../>
+
+        <Button
+            android:id="@+id/btn_Webnesday"
+            android:focusable="false"
+            android:text="三"
+            android:background="#f9f6f6"
+            .../>
+
+        <Button
+            android:id="@+id/btn_Thursday"
+            android:text="四"
+            android:background="#f9f6f6"
+            .../>
+
+        <Button
+            android:id="@+id/btn_Friday"
+            android:text="五"
+            android:background="#f9f6f6"
+            .../>
+        <!-- button可能需要如此设置-->
+        <!--android:focusable="false"-->
+
+        <Button
+            android:id="@+id/btn_Saturday"
+            android:focusable="false"
+            android:text="六"
+            android:autoText="false"
+            android:background="#f9f6f6"
+            .../>
+    </LinearLayout>
+</LinearLayout>
+
+
+
+
+
+
+
+
+
+
+#源码 
+  数据与显示的自动化刷新模型 Adapter -> 需要查找资料学习 
+
+页面之间、 消息发送、 服务响应等， 交换的数据有 
+  Intent.putExtra("alarm", alarm);     <--> Intent.getExtras().getSerializable("alarm") 
+     另外， 提取 alarm 有时先中间转换下 Bundle = getIntent().getExtras();  Bundle.getSerializable("alarm") + Bundle.containsKey("alarm") 
+     另外有个调用 Bundle.putSerializable("alarm", alarm); 
+
+
+
+
+
+一、 启动页面 主Activity： 
+1.1 主页面显示 
+  {project.dir}\app\src\main\java\zeusro\specialalarmclock\activity\AlarmActivity.java 
+
+/* 初始页面的创建     初始化页面显示， 初始化关联闹钟数据表与数据库， 关联界面组件的操作 */
+public class AlarmActivity extends BaseActivity {
+  protected void onCreate(Bundle savedInstanceState) {
+    setContentView(R.layout.activity_home);     // 本页面布局文件 activity_home.xml  
+    ..... 
+  }
+  
+  布局文件 activity_home.xml  
+  顶部标题栏
+  列表框， 显示已有闹钟项， 长按删除、 单击编辑。 列表框关联数据表 Adapter， 供自动刷新显示用， 另外可从数据库获取已有闹钟数据， 可设置和删除指定项。 
+  底部一个添加按钮， 一个设置按钮（未实现？） 
+
+
+
+
+
+
+1.2 可设置闹钟提醒的页面基类     可设置闹钟提醒、 可接收闹钟提醒服务 BaseActivity
+  {project.dir}\app\src\main\java\zeusro\specialalarmclock\activity\BaseActivity.java 
+  >   public class BaseActivity extends AppCompatActivity implements android.view.View.OnClickListener {} 
+
+
+
+
+
+1.3 闹钟数据表 Adapter， 关联到主页面的列表框供显示自动刷新： 
+  数据表 Adapter， 内存中的闹钟数据表。     启动页面的列表框视图关联这个 Adapter， 当数据表有变化时可供自动刷新显示。 
+  初始加载和数据变化时， 会操作数据库同步闹钟数据。 
+  
+  {project.dir}\app\src\main\java\zeusro\specialalarmclock\adapter\AlarmListAdapter.java 
+     > public class AlarmListAdapter extends BaseAdapter { }
+
+
+
+
+
+1.4 一个闹钟的数据     包含闹钟项参数数据与操作： 
+  基本上是单纯的闹钟项数据， 供各模块使用。 
+  
+  {project.dir}\app\src\main\java\zeusro\specialalarmclock\Alarm.java 
+     > public class Alarm implements Serializable {} 
+
+
+
+
+
+二、 闹钟参数设置页面 
+2.1 闹钟参数设置页面显示 闹钟参数设置页面 
+  基类 BaseActivity 可设置闹钟提醒、 可接收闹钟提醒服务 
+  {project.dir}\app\src\main\java\zeusro\specialalarmclock\activity\AlarmPreferencesActivity.java 
+
+// 闹钟参数设置页面的创建     关联要设置的闹钟参数 Adapter、 设置列表框条目点击事件响应（设置振动状态与闹铃音） 
+public class AlarmPreferencesActivity extends BaseActivity {
+  protected void onCreate(Bundle savedInstanceState) {
+    setContentView(R.layout.preferences);     // 本页面的布局文件      闹钟参数选择页面布局 preferences.xml
+    ... 
+  }
+
+
+
+
+
+2.2 闹钟参数设置页面用 抽象化的某个参数     供 AlarmSettingItemListAdapter.java 使用 
+  {project.dir}\app\src\main\java\zeusro\specialalarmclock\AlarmPreference.java 
+     > public class AlarmPreference {} 
+
+
+
+
+2.3 闹钟参数设置页面用 抽象化参数的类型     只定义了个枚举类型 
+  {project.dir}\app\src\main\java\zeusro\specialalarmclock\Type.java 
+     > public enum Type{} 
+
+
+
+
+
+2.4 闹钟参数设置页面中子参数数据与编辑显示 Adapter 
+  为自动化显示编辑子参数， 抽象化组织各个子参数为表 
+  然后添加子参数显示编辑组件， 与显示关联数据， 设置修改监听处理函数等 
+  
+  {project.dir}\app\src\main\java\zeusro\specialalarmclock\adapter\AlarmSettingItemListAdapter.java 
+     > public class AlarmSettingItemListAdapter extends BaseAdapter {}
+
+
+
+三、 闹钟响铃提醒页面 
+3.1 闹钟提醒页面 
+  开启闹铃音或振动器， 如移动滑条到位则关闭 
+  
+  {project.dir}\app\src\main\java\zeusro\specialalarmclock\activity\AlarmAlertActivity.java 
+public class AlarmAlertActivity extends AppCompatActivity implements View.OnClickListener {
+  setContentView(R.layout.alert);     // 本页面布局 alert.xml     闹铃提示页面布局 
+  ...
+} 
+
+
+
+
+
+3.2 闹铃到时广播接收器 
+WakefulBroadcastReceiver     https://developer.android.google.cn/reference/androidx/legacy/content/WakefulBroadcastReceiver?hl=zh-cn 
+
+使设备保持唤醒状态     https://developer.android.google.cn/training/scheduling/wakelock?hl=zh-CN 
+
+WakefulBroadcastReceiver 学习笔记     https://www.jianshu.com/p/5b8bfa6a6c37 
+  > 简介
+  >   WakefulBroadcastReceiver 是一种特殊的广播接收器. 它可以自动创建和管理唤醒锁 PARTIAL_WAKE_LOCK 来执行任务. 确保耗时任务执行完毕之前设备不会休眠. 
+  >   WakefulBroadcastReceiver 收到广播后一般会启动 Service (通常用 IntentService 来处理耗时任务), 同时确保设备在整个 Service 执行过程中保持唤醒状态. 不然的话, 对于耗时任务, 设备可能在你完成任务之前就休眠了. 
+  > 
+  > 注意点 
+  >   通过 startWakefulService(Context, Intent) 启动 Service 而不是 startService(). WakefulBroadcastReceiver 启动 Service 的时候会自动创建唤醒锁, 并在 Intent 附上唤醒锁的 ID 来判断这个唤醒锁. 
+  >   最后必须在 Service 中调用 completeWakefulIntent(intent) 释放唤醒锁. 
+
+
+  {project.dir}\app\src\main\java\zeusro\specialalarmclock\receiver\AlarmServiceBroadcastReciever.java
+     > public class AlarmServiceBroadcastReciever extends WakefulBroadcastReceiver { } 
+
+
+闹钟到时执行的任务服务 SchedulingService： 打开闹铃提醒页面 AlarmAlertActivity.java 
+  {project.dir}\app\src\main\java\zeusro\specialalarmclock\service\SchedulingService.java 
+     > public class SchedulingService extends IntentService { } 
+
+
+
+
+
+
+
+
+
+
+
+
+设备启动完成消息的处理 
+  {project.dir}\app\src\main\java\zeusro\specialalarmclock\receiver\BootReceiver.java
+public class BootReceiver extends BroadcastReceiver {
+  public void onReceive(Context context, Intent intent) { 
+    if (intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
+      AlarmServiceBroadcastReciever.setAlarm(context, null);     // 使用 AlarmManager 设置定时提醒
+    }
+  }
+}
+
+？？？？？广播接收器     启动页面设置按钮发送的通知接收， 似乎没实现完全 
+  {project.dir}\app\src\main\java\zeusro\specialalarmclock\receiver\NotificationWakeUpReceiver.java
+
+
+
+
+
+自定义滑条控件
+  {project.dir}\app\src\main\java\zeusro\specialalarmclock\view\SlideView.java
+.................................................................................................... 
+
+
+
+
+
+
+
+
+
+
+.................................................................................................... 
+##### (OK 2020年04月15日) AS3.3 移植测试学习验证子项目 Prj_SpecialAlarmClock 
+
+建立运行项目： 
+  创建项目路径： 
+  近期归档路径： 
+
+
+
+
+
+一、 9.1 SpecialAlarmClock 
+  原始源码 
+  从 github 下载的 ZIP 包 ref__android_SpecialAlarmClock-master.zip， 内容简单， 似乎一个 AS2.0 的项目， 包含编译配置 build.gradle 等。 
+
+
+
+
+
+二、 9.2 Prj_SpecialAlarmClock     2020年04月15日 make ok - AVD 22 
+  简单修改了下配置文件， 然后就编译通过， 不过 AVD 27 上只显示了初始页面， 点按钮就出问题， 故存档一个就暂停玩下去。 
+  后来又玩几次， AVD 22 又可以设置闹铃了。 
+  
+  可设置多条闹钟、 可选择响铃， 不过响铃有些不准时。 
+
+
+
+
+
+三、 9.3 Prj_SpecialAlarmClock     2020年04月25日 阅读注释 
+  学习代码并注释 
+
+
+
+
+
+.................................................................................................... 
+
+---------------------------------------------------------------------------------------------------- 

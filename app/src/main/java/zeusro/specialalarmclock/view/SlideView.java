@@ -27,6 +27,7 @@ import zeusro.specialalarmclock.R;
 
 /**
  * Created by Z on 2015/11/27.
+ * 自定义滑条控件
  */
 
 public class SlideView extends View {

@@ -10,6 +10,7 @@ import android.support.v4.app.NotificationCompat;
 import zeusro.specialalarmclock.R;
 import zeusro.specialalarmclock.activity.AlarmActivity;
 
+/* 广播接收器     启动页面设置按钮发送的通知接收， 似乎没实现完全 */
 public class NotificationWakeUpReceiver extends BroadcastReceiver {
     public NotificationWakeUpReceiver() {
     }
@@ -25,6 +26,5 @@ public class NotificationWakeUpReceiver extends BroadcastReceiver {
         mBuilder.setContentIntent(PendingIntent.getActivity(context, 0, resultIntent, PendingIntent.FLAG_ONE_SHOT));
         NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.notify(AlarmActivity.notificationId, mBuilder.build());
-
     }
 }

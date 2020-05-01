@@ -2,9 +2,9 @@ package zeusro.specialalarmclock;
 
 /**
  * Created by Z on 2015/11/16.
+ * 闹钟参数设置页面用 抽象化的某个参数     供 AlarmSettingItemListAdapter.java 使用。     <del>有必要？
  */
 public class AlarmPreference {
-
     private Key key;
     private String title;
     private String summary;
